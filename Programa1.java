@@ -6,8 +6,6 @@
 package programa1;
 
 import java.util.Scanner;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,9 +47,9 @@ public class Programa1 {
             
             ResultSet resultado = sql.executeQuery(consulta);
             
-            while(resultado.next()){
-                System.out.println(resultado);
-            }
+                while(resultado.next()){
+                    System.out.println(resultado.getString("columna1"));
+                }
                    
         }catch(SQLException ex){
             System.out.println("No se puede realizar la consulta");

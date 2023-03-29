@@ -8,20 +8,20 @@ package programa1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 /**
  *
  * @author estudiante
  */
 public class Conexion {
     
-     public static Connection getConexion(){
-        String conexion = "jdbc:sqlserver://localhost:1433;"
-                + "database=Canciones;"
-                + "user=sa2;"
-                + "password=1234";
+     public static Connection getConexion() throws ClassNotFoundException{
+        String conexion = "jdbc:postgresql://localhost:5432/Canciones";
+         
         
         try{
-            Connection con = DriverManager.getConnection(conexion);
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection(conexion,"postgres","1234");
             return con;
         } catch(SQLException ex){
             System.out.println("ERROR NO HAY CONEXION");
