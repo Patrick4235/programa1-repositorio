@@ -8,6 +8,7 @@ package programa1;
 import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -42,28 +43,21 @@ public class Programa1 {
         anio = sc.next();     */
         
         try{
-            Statement sql = getConexion().createStatement();
-        }
-        
-        
+            Statement sql = Conexion.getConexion().createStatement();
+           
+            String consulta = "SELECT * FROM TABLA1";
+            
+            ResultSet resultado = sql.executeQuery(consulta);
+            
+            while(resultado.next()){
+                System.out.println(resultado);
+            }
+                   
+        }catch(SQLException ex){
+            System.out.println("No se puede realizar la consulta");
+        }          
     }
     
-    public static Connection getConexion(){
-        String conexion = "jdbc:sqlserver://UCUXA60633:1443;"
-                + "database=Canciones;"
-                + "user=UCUXA60633\\estudiante"
-                + "password="
-                + "loginTimeout=15";
-        
-        try{
-            Connection con = DriverManager.getConnection(conexion);
-            return con;
-        } catch(SQLException ex){
-            System.out.print("ERROR NO HAY CONEXION");
-            return null;
-        }
-        
-        
-    }
+   
     
 }
