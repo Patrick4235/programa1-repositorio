@@ -6,6 +6,10 @@
 package programa1;
 
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -26,27 +30,40 @@ public class Programa1 {
         String nombreAlbum;
         String anio;
         
-        System.out.print("Ingrese nombre de la cancion: ");
-        nombreCancion = sc.next();
-        
+        /*System.out.print("Ingrese nombre de la cancion: ");
+        nombreCancion = sc.next();      
         System.out.print("Ingrese nombre del autor - compositor: ");
-        nombreAutor = sc.next();
-        
+        nombreAutor = sc.next();       
         System.out.print("Ingrese nombre cantante: ");
-        nombreCantante = sc.next();
-        
+        nombreCantante = sc.next();     
         System.out.print("Ingrese nombre del album: ");
-        nombreAlbum = sc.next();
-        
+        nombreAlbum = sc.next();       
         System.out.print("Ingrese nombre año: ");
-        anio = sc.next();
+        anio = sc.next();     */
         
-        System.out.println(nombreCancion);
-        System.out.println(nombreAutor);
-        System.out.println(nombreCantante);
-        System.out.println(nombreAlbum);
-        System.out.println(anio);
-                
+        try{
+            Statement sql = getConexion().createStatement();
+        }
+        
+        
+    }
+    
+    public static Connection getConexion(){
+        String conexion = "jdbc:sqlserver://UCUXA60633:1443;"
+                + "database=Canciones;"
+                + "user=UCUXA60633\\estudiante"
+                + "password="
+                + "loginTimeout=15";
+        
+        try{
+            Connection con = DriverManager.getConnection(conexion);
+            return con;
+        } catch(SQLException ex){
+            System.out.print("ERROR NO HAY CONEXION");
+            return null;
+        }
+        
+        
     }
     
 }
